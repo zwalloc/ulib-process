@@ -1,0 +1,4 @@
+type: executable
+name: .errout
+
+artifact-name: errout

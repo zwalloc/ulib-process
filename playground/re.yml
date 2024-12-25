@@ -1,0 +1,5 @@
+type: executable
+name: ".playground"
+
+deps:
+  - ulib-process

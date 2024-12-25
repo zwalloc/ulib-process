@@ -1,0 +1,88 @@
+type: executable
+name: .tests
+
+load-context.!standalone:
+  enabled: false
+
+platform.linux|osx:
+  cxx-global-link-deps:
+    - pthread
+
+  actions:
+    - install:
+        on: post-build
+        from: ../ulib-process-project.errout/errout
+        to-file:
+          - ../ulib-process-project.tests/errout
+
+    - install:
+        on: post-build
+        from: ../ulib-process-project.return5/return5
+        to-file:
+          - ../ulib-process-project.tests/return5
+
+    - install:
+        on: post-build
+        from: ../ulib-process-project.crashed_parent/crashed_parent
+        to-file:
+          - ../ulib-process-project.tests/crashed_parent
+
+    - install:
+        on: post-build
+        from: ../ulib-process-project.sleeper/sleeper
+        to-file:
+          - ../ulib-process-project.tests/sleeper
+
+    - install:
+        on: post-build
+        from: ../ulib-process-project.retinput/retinput
+        to-file:
+          - ../ulib-process-project.tests/retinput
+
+
+platform.windows:
+  deps:
+    - vcpkg:gtest @ static-md
+
+  actions:
+    - install:
+        on: post-build
+        from: ../ulib-process-project.errout/errout.exe
+        to-file:
+          - ../ulib-process-project.tests/errout.exe
+
+    - install:
+        on: post-build
+        from: ../ulib-process-project.return5/return5.exe
+        to-file:
+          - ../ulib-process-project.tests/return5.exe
+
+    - install:
+        on: post-build
+        from: ../ulib-process-project.crashed_parent/crashed_parent.exe
+        to-file:
+          - ../ulib-process-project.tests/crashed_parent.exe
+
+    - install:
+        on: post-build
+        from: ../ulib-process-project.sleeper/sleeper.exe
+        to-file:
+          - ../ulib-process-project.tests/sleeper.exe
+
+    - install:
+        on: post-build
+        from: ../ulib-process-project.retinput/retinput.exe
+        to-file:
+          - ../ulib-process-project.tests/retinput.exe
+
+platform.!windows:
+  deps:
+    - vcpkg:gtest
+
+deps:
+  - ulib-process
+  - .errout
+  - .return5
+  - .crashed_parent
+  - .sleeper
+  - .retinput

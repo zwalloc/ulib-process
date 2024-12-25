@@ -1,0 +1,4 @@
+type: executable
+name: .sleeper
+
+artifact-name: sleeper

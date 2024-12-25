@@ -1,0 +1,7 @@
+type: executable
+name: .crashed_parent
+
+artifact-name: crashed_parent
+
+deps:
+  - ulib-process
